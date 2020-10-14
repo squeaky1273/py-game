@@ -23,21 +23,26 @@ enemy_change = []
 score_number = 0
 score_font = pygame.font.SysFont(None, 30)
 
-# Game Over
+# GAME OVER
 game_over_font = pygame.font.SysFont(None, 60)
 
+# Game over text
 def game_over_text():
     game_over_text = game_over_font.render("Game Over", True, WHITE)
     screen.blit(game_over_text, (200, 250))
 
+# Final Score
 def show_score(text, color, font_size, x, y):
     font = pygame.font.SysFont(None, font_size)
     score_text = font.render(text, True, color)
     screen.blit(score_text, (x, y))
 
+# CHARACTERS
+# Player
 def player(x, y):
     pass
 
+# Enemy
 def enemy():
     pass
 
