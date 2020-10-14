@@ -7,6 +7,8 @@ pygame.display.set_caption('LOL!')
 
 # Create Window
 screen = pygame.display.set_mode((800, 600))
+
+# Color(s)
 WHITE = (255, 255, 255)
 
 # Player
@@ -18,10 +20,26 @@ player_change = 0
 enemy_x = []
 enemy_y = []
 enemy_change = []
+enemy_num = 5
 
 # Score
 score_number = 0
 score_font = pygame.font.SysFont(None, 30)
+
+text_x = 10
+test_y = 10
+
+def throw_snowball(x, y):
+    global snowball_state
+    snowball_state = "fire"
+    screen.blit(snowballImg, (x + 16, y + 10))
+
+def is_colliding(enemy_x, enemy_y, snowball_x, snowball_y):
+    distance = math.sqrt(math.pow(enemy_x - snowball_x, 2) + (math.pow(enemy_y - snowball_y, 2)))
+    if distance < 27:
+        return True
+    else:
+        return False
 
 # GAME OVER
 game_over_font = pygame.font.SysFont(None, 60)
@@ -40,13 +58,13 @@ def show_score(text, color, font_size, x, y):
 # CHARACTERS
 # Player
 def player(x, y):
-    pass
+    screen.blit(img, (x, y))
 
 # Enemy
 def enemy():
-    pass
+    screen.blit(img[i], (x, y))
 
-
+# GAMEPLAY
 # Game Loop
 running = True
 while running:
@@ -68,6 +86,9 @@ while running:
         
     # Fill screen with white
     screen.fill(WHITE)
+
+    player(player_x, player_y)
+    show_score(text_x, test_y)
 
     # Update the game display
     pygame.display.update()
