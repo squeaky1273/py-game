@@ -3,11 +3,11 @@ import random
 
 # Initialize pygame
 pygame.init()
+pygame.display.set_caption('LOL!')
 
 # Create Window
 screen = pygame.display.set_mode((800, 600))
 WHITE = (255, 255, 255)
-screen.fill(WHITE)
 
 # Player
 player_x = 50
@@ -21,18 +21,19 @@ enemy_change = []
 
 # Score
 score_number = 0
-score_font = pygame.font.Font(None, 30)
+score_font = pygame.font.SysFont(None, 30)
 
 # Game Over
-game_over_font = pygame.font.Font(None, 60)
+game_over_font = pygame.font.SysFont(None, 60)
 
 def game_over_text():
     game_over_text = game_over_font.render("Game Over", True, WHITE)
     screen.blit(game_over_text, (200, 250))
 
-def show_score(x, y):
-    score = font.render("Score : " + str(score_number), True, WHITE)
-    screen.blit(score, (x,y))
+def show_score(text, color, font_size, x, y):
+    font = pygame.font.SysFont(None, font_size)
+    score_text = font.render(text, True, color)
+    screen.blit(score_text, (x, y))
 
 def player(x, y):
     pass
@@ -40,9 +41,31 @@ def player(x, y):
 def enemy():
     pass
 
+
 # Game Loop
 running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
+    keys = pygame.key.get_pressed()
+
+    # Update the player
+    if keys[pygame.K_LEFT]:
+        player_change = -5
+    if keys[pygame.K_RIGHT]:
+        player_chnage = 5
+    if keys[pygame.K_UP]:
+        player_change = -5
+    if keys[pygame.K_DOWN]:
+        player_change = 5
+        
+    # Fill screen with white
+    screen.fill(WHITE)
+
+    # Update the game display
+    pygame.display.update()
+
+# Done! Time to quit.
+pygame.quit()
