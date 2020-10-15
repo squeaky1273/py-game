@@ -97,6 +97,9 @@ def draw_text(text, color, font_size, x, y):
 # Game Loop
 running = True
 while running:
+
+    # Fill screen with grey
+    screen.fill(GREY)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -124,6 +127,9 @@ while running:
         elif enemy_x[i] >= 736:
             enemy_x_change[i] = -2
             enemy_y[i] += enemy_y_change[i]
+            
+        # Run enemy function
+        enemy(enemy_x[i], enemy_y[i], i)
 
     # TODO: If enemy went off the screen, reset it
 
@@ -135,17 +141,11 @@ while running:
 
     # TODO: If player collides with enemy, flash game over screen
 
-    # Fill screen with grey
-    screen.fill(GREY)
-
     # Draw the points
     draw_text(text=f'Points: {points}', color=BLACK, font_size=24, x=20, y=20)
 
     # Run player function
     player(player_x, player_y)
-
-    # Run enemy function
-    enemy(enemy_x[i], enemy_y[i], i)
 
     # Update the game display
     pygame.display.update()
