@@ -4,7 +4,7 @@ import math
 
 # Initialize Pygame
 pygame.init()
-pygame.display.set_caption('LOL!')
+pygame.display.set_caption('Snowball Bash!')
 
 ################################################################################
 # VARIABLES
@@ -20,6 +20,7 @@ screen = pygame.display.set_mode((800, 600))
 # Color constants
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
+GREY = (128, 128, 128)
 
 # Player Variables
 player_img = pygame.image.load('player.png') # make sure to create diiferent sprite
@@ -27,16 +28,19 @@ player_x = 370
 player_y = 480
 
 # # Enemy Variables
-# enemy_img = []
-# enemy_x = []
-# enemy_y = []
-# enemy_num = 5
+enemy_img = []
+enemy_x = []
+enemy_y = []
+enemy_x_change = []
+enemy_y_change = []
+enemy_num = 5
 
-# for i in range(enemy_num):
-#     enemy_x.append(random.randint(0, 736))
-#     enemy_y.append(random.randint(50, 150))
-#     enemy_x_change.append(4)
-#     enemy_y_change.append(40)
+for i in range(enemy_num):
+    enemy_img.append(pygame.image.load('enemy.png'))  # make sure to create diiferent sprite
+    enemy_x.append(random.randint(0, 736))
+    enemy_y.append(random.randint(50, 150))
+    enemy_x_change.append(1)
+    enemy_y_change.append(1)
 
 # # Snowball
 
@@ -110,6 +114,16 @@ while running:
         player_y += 5
 
     # TODO: Update the enemy's y position based on its velocity
+        # Enemy Movement
+    for i in range(enemy_num):
+
+        enemy_x[i] += enemy_x_change[i]
+        if enemy_x[i] <= 0:
+            enemy_x_change[i] = 2
+            enemy_y[i] += enemy_y_change[i]
+        elif enemy_x[i] >= 736:
+            enemy_x_change[i] = -2
+            enemy_y[i] += enemy_y_change[i]
 
     # TODO: If enemy went off the screen, reset it
 
@@ -121,16 +135,17 @@ while running:
 
     # TODO: If player collides with enemy, flash game over screen
 
-    # Fill screen with white
-    screen.fill(WHITE)
-
-    # TODO: Draw the enemy
+    # Fill screen with grey
+    screen.fill(GREY)
 
     # Draw the points
     draw_text(text=f'Points: {points}', color=BLACK, font_size=24, x=20, y=20)
 
     # Run player function
     player(player_x, player_y)
+
+    # Run enemy function
+    enemy(enemy_x[i], enemy_y[i], i)
 
     # Update the game display
     pygame.display.update()
