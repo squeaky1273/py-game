@@ -14,9 +14,6 @@ pygame.display.set_caption('Snowball Bash!')
 # Set up the drawing window
 screen = pygame.display.set_mode((800, 600))
 
-# CHARACTER_WIDTH = 40
-# CHARACTER_HEIGHT = 40
-
 # Color constants
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -54,10 +51,6 @@ snowball_x_change = 0
 snowball_y_change = 10
 snowball_state = "ready"
 
-# # Target Variables
-# target_x = 10
-# target_y = 10
-
 # Other variables
 points = 0
 
@@ -79,26 +72,32 @@ def player_throw_snowball(x, y):
     snowball_state = "fire"
     screen.blit(snowball_img, (x + 10, y + 4))
 
-# # Enemy Throw Snowball
+## TODO: Enemy Throw Snowball 
 # def enemy_throw_snowball(x, y):
+#     global snowball_state
+#     snowball_state = "fire"
 #     screen.blit(snowball_img, (x + 10, y + 4))
 
-# def is_colliding(enemy_x, enemy_y, snowball_x, snowball_y):
-#     distance = math.sqrt(math.pow(enemy_x - snowball_x, 2) + (math.pow(enemy_y - snowball_y, 2)))
+## TODO: Snowball hits the player
+# def is_colliding_with_player(player_x, player_y, snowball_x, snowball_y):
+#     distance = math.sqrt(math.pow(player_x - snowball_x, 2) + (math.pow(player_y - snowball_y, 2)))
 #     if distance < 27:
 #         return True
 #     else:
 #         return False
 
+# Snowball hits Enemy
+def is_colliding_with_enemy(enemy_x, enemy_y, snowball_x, snowball_y):
+    distance = math.sqrt(math.pow(enemy_x - snowball_x, 2) + (math.pow(enemy_y - snowball_y, 2)))
+    if distance < 27:
+        return True
+    else:
+        return False
+
 def draw_text(text, color, font_size, x, y):
     font = pygame.font.SysFont(None, font_size)
     img = font.render(text, True, color)
     screen.blit(img, (x, y))
-
-# # Game over text
-# def game_over_text():
-#     game_over_text = game_over_font.render("Game Over", True, WHITE)
-#     screen.blit(game_over_text, (200, 250))
 
 
 ################################################################################
@@ -132,8 +131,7 @@ while running:
             snowball_x = player_x
             player_throw_snowball(snowball_x, snowball_y)
 
-    # TODO: Update the enemy's y position based on its velocity
-        # Enemy Movement
+    # Enemy Movement
     for i in range(enemy_num):
 
         enemy_x[i] += enemy_x_change[i]
@@ -147,13 +145,23 @@ while running:
         # Run enemy function
         enemy(enemy_x[i], enemy_y[i], i)
 
-    # TODO: If enemy went off the screen, reset it
+        # If snowball hits enemy add 1 to point score
+        if is_colliding_with_enemy(enemy_x[i], enemy_y[i], snowball_x, snowball_y):
+            points += 1
+            snowball_y = 480
+            snowball_state = "ready"
+            enemy_x[i] = random.randint(0, 736)
+            enemy_y[i] = random.randint(50, 150)
 
-    # # If player collides with target, reset it & increment points
-    # if is_colliding(player_x, player_y, target_x, target_y, CHARACTER_WIDTH, CHARACTER_HEIGHT):
-    #     points += 1
-    #     target_y = 0
-    #     target_x = random.random() * (SCREEN_WIDTH - CHARACTER_WIDTH)
+        # # TODO: If snowball hits player, flash game over screen
+        # if is_colliding_with_player(player_x[i], player_y[i], snowball_x, snowball_y):
+        #     snowball_y = 480
+        #     snowball_state = "ready"
+        #     player_x[i] = random.randint(0, 736)
+        #     player_y[i] = random.randint(50, 150)
+
+        #     # # Draw the Game Over text
+        #     # draw_text(text='GAME OVER', color=BLACK, font_size=50, x=300, y=400)
 
     if snowball_y <= 0:
         snowball_y = 480
@@ -162,8 +170,6 @@ while running:
     if snowball_state is "fire":
         player_throw_snowball(snowball_x, snowball_y)
         snowball_y -= snowball_y_change
-
-    # TODO: If player collides with enemy, flash game over screen
 
     # Draw the points
     draw_text(text=f'Points: {points}', color=BLACK, font_size=24, x=20, y=20)
