@@ -23,35 +23,36 @@ WHITE = (255, 255, 255)
 GREY = (128, 128, 128)
 
 # Player Variables
-player_img = pygame.image.load('player.png') # make sure to create diiferent sprite
+player_img = pygame.image.load('player.png')
 player_x = 370
 player_y = 480
 
-# # Enemy Variables
+# Enemy Variables
 enemy_img = []
 enemy_x = []
 enemy_y = []
 enemy_x_change = []
 enemy_y_change = []
-enemy_num = 5
+enemy_num = 8
 
 for i in range(enemy_num):
-    enemy_img.append(pygame.image.load('enemy.png'))  # make sure to create diiferent sprite
+    enemy_img.append(pygame.image.load('enemy.png'))
     enemy_x.append(random.randint(0, 736))
     enemy_y.append(random.randint(50, 150))
     enemy_x_change.append(1)
     enemy_y_change.append(1)
 
-# # Snowball
+# Snowball Variables
 
-# # Ready - You can't see the snowball on the screen
-# # Fire - The snowball is currently moving
+# Ready - You can't see the snowball on the screen
+# Fire - The snowball is currently moving
 
-# snowball_x = 0
-# snowball_y = 480
-# snowball_x_change = 0
-# snowball_y_change = 10
-# snowball_state = "ready"
+snowball_img = pygame.image.load('snowball.png')
+snowball_x = 0
+snowball_y = 480
+snowball_x_change = 0
+snowball_y_change = 10
+snowball_state = "ready"
 
 # # Target Variables
 # target_x = 10
@@ -71,6 +72,16 @@ def player(x, y):
 # Enemy
 def enemy(x, y, i):
     screen.blit(enemy_img[i], (x, y))
+
+# Player Throw Snowball
+def player_throw_snowball(x, y):
+    global snowball_state
+    snowball_state = "fire"
+    screen.blit(snowball_img, (x + 10, y + 4))
+
+# # Enemy Throw Snowball
+# def enemy_throw_snowball(x, y):
+#     screen.blit(snowball_img, (x + 10, y + 4))
 
 # def is_colliding(enemy_x, enemy_y, snowball_x, snowball_y):
 #     distance = math.sqrt(math.pow(enemy_x - snowball_x, 2) + (math.pow(enemy_y - snowball_y, 2)))
@@ -115,6 +126,11 @@ while running:
         player_y -= 5
     if keys[pygame.K_DOWN]:
         player_y += 5
+    if keys[pygame.K_SPACE]:
+        if snowball_state is "ready":
+            # Get the current x cordinate of the spaceship
+            snowball_x = player_x
+            player_throw_snowball(snowball_x, snowball_y)
 
     # TODO: Update the enemy's y position based on its velocity
         # Enemy Movement
@@ -127,7 +143,7 @@ while running:
         elif enemy_x[i] >= 736:
             enemy_x_change[i] = -2
             enemy_y[i] += enemy_y_change[i]
-            
+
         # Run enemy function
         enemy(enemy_x[i], enemy_y[i], i)
 
@@ -138,6 +154,14 @@ while running:
     #     points += 1
     #     target_y = 0
     #     target_x = random.random() * (SCREEN_WIDTH - CHARACTER_WIDTH)
+
+    if snowball_y <= 0:
+        snowball_y = 480
+        snowball_state = "ready"
+
+    if snowball_state is "fire":
+        player_throw_snowball(snowball_x, snowball_y)
+        snowball_y -= snowball_y_change
 
     # TODO: If player collides with enemy, flash game over screen
 
