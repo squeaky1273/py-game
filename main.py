@@ -6,6 +6,9 @@ import math
 pygame.init()
 pygame.display.set_caption('Snowball Bash!')
 
+# Used to manage how fast the screen updates
+clock = pygame.time.Clock()
+
 ################################################################################
 # VARIABLES
 ################################################################################
@@ -14,10 +17,13 @@ pygame.display.set_caption('Snowball Bash!')
 # Set up the drawing window
 screen = pygame.display.set_mode((800, 600))
 
+# Background
+background = pygame.image.load('background.png')
+
 # Color constants
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
-GREY = (128, 128, 128)
+# GREY = (246, 246, 246)
 
 # Player Variables
 player_img = pygame.image.load('player.png')
@@ -78,19 +84,19 @@ def player_throw_snowball(x, y):
     snowball_state = "fire"
     screen.blit(snowball_img, (x + 10, y + 4))
 
-# TODO: Enemy Throw Snowball 
-def enemy_throw_snowball(x, y):
-    global snowball_state
-    snowball_state = "fire"
-    screen.blit(snowball_img, (x + 10, y + 4))
+# # TODO: Enemy Throw Snowball 
+# def enemy_throw_snowball(x, y):
+#     global snowball_state
+#     snowball_state = "fire"
+#     screen.blit(snowball_img, (x + 10, y + 4))
 
-# TODO: Snowball hits the player
-def is_colliding_with_player(player_x, player_y, enemy_x, enemy_y):
-    distance = math.sqrt(math.pow(player_x - enemy_x, 2) + (math.pow(player_y - enemy_y, 2)))
-    if distance < 27:
-        return True
-    else:
-        return False
+# # TODO: Snowball hits the player
+# def is_colliding_with_player(player_x, player_y, enemy_x, enemy_y):
+#     distance = math.sqrt(math.pow(player_x - enemy_x, 2) + (math.pow(player_y - enemy_y, 2)))
+#     if distance < 27:
+#         return True
+#     else:
+#         return False
 
 # Snowball hits Enemy
 def is_colliding_with_enemy(enemy_x, enemy_y, snowball_x, snowball_y):
@@ -115,7 +121,8 @@ running = True
 while running:
 
     # Fill screen with grey
-    screen.fill(GREY)
+    screen.fill(WHITE)
+    screen.blit(background, (0, 0))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
