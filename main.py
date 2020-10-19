@@ -20,9 +20,6 @@ background = pygame.image.load('background.png')
 # Color constants
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
-# GREY = (246, 246, 246)
 
 # Player Variables
 player_img = pygame.image.load('player.png')

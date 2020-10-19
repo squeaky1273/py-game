@@ -1,5 +1,6 @@
-# Py-game
+# Snowball Bash
 
+* [ Description. ](#description)
 * [ Getting Started. ](#start)
     * [ Prerequisites. ](#pre)
     * [ Installing. ](#install)
@@ -9,6 +10,14 @@
 * [ Built With. ](#built)
 * [ Author(s). ](#author(s))
 * [ Acknowledgment. ](#credit)
+
+<a name="description"></a>
+## Description
+❄️ A space invader type pygame, but with a twist ❄️ 
+
+![Image of game](info.png)
+
+- [pitch slides](https://docs.google.com/presentation/d/1Bxhrws7NxU9sP9RUvLqXMUeOaH_OCLofMsQof-7DRzc/edit#slide=id.p)
 
 <a name="start"></a>
 ## Getting Started
