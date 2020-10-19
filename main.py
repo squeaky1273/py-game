@@ -96,7 +96,8 @@ def game_intro():
         draw_text(text='Press C to play and Q to quit.', color=BLACK, font_size=25, x=275, y=450)
         pygame.display.update()
 
-def game_over_text():
+def game_over():
+    screen.fill(WHITE)
     screen.blit(game_over_img, (250, 175))
     draw_text(text='Press q to quit', color=BLACK, font_size=25, x=350, y=275)
 
@@ -180,12 +181,11 @@ def controls_info():
 ################################################################################
 
 # Game Loop
+game_intro()
+
 running = True
 while running:
-    # game_intro()
 
-    # Fill screen with grey
-    screen.fill(WHITE)
     screen.blit(background, (0, 0))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -227,10 +227,7 @@ while running:
         if enemy_y[i] > player_y:
             for j in range(enemy_num):
                 enemy_y[j] = 7000
-            game_over_text()
-            if keys[pygame.K_q]:
-                pygame.quit()
-                quit()
+            game_over()
             break
 
         enemy_x[i] += enemy_x_change[i]
