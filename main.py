@@ -23,6 +23,8 @@ background = pygame.image.load('background.png')
 # Color constants
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
 # GREY = (246, 246, 246)
 
 # Player Variables
@@ -111,7 +113,27 @@ def draw_text(text, color, font_size, x, y):
     img = font.render(text, True, color)
     screen.blit(img, (x, y))
 
-
+# TODO: Pause Function
+def paused():
+    paused = True
+    while paused:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            
+            keys = pygame.key.get_pressed()
+            if event.type == pygame.KEYDOWN:
+                if keys[pygame.K_c]:
+                    paused = False
+                elif keys[pygame.K_q]:
+                    pygame.quit()
+                    quit()
+        
+        screen.fill(WHITE)
+        draw_text(text='Paused', color=BLACK, font_size=100, x=250, y=100)
+        draw_text(text='Press C to continue or Q to quit', color=BLACK, font_size=25, x=250, y=250)
+        pygame.display.update()
+        
 ################################################################################
 # GAMEPLAY
 ################################################################################
@@ -143,6 +165,9 @@ while running:
             # Get the current x cordinate of the spaceship
             snowball_x = player_x
             player_throw_snowball(snowball_x, snowball_y)
+
+    if keys[pygame.K_p]:
+        paused()
 
     # Enemy Movement
     for i in range(enemy_num):
