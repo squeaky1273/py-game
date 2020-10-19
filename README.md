@@ -1,4 +1,7 @@
 # Snowball Bash
+❄️ A space invader type pygame, but with a twist ❄️ 
+
+![Image of game](info.png)
 
 * [ Description. ](#description)
 * [ Getting Started. ](#start)
@@ -9,15 +12,8 @@
     * [ Running. ](#running)
 * [ Built With. ](#built)
 * [ Author(s). ](#author(s))
+* [ Additional. ](#additional)
 * [ Acknowledgment. ](#credit)
-
-<a name="description"></a>
-## Description
-❄️ A space invader type pygame, but with a twist ❄️ 
-
-![Image of game](info.png)
-
-- [pitch slides](https://docs.google.com/presentation/d/1Bxhrws7NxU9sP9RUvLqXMUeOaH_OCLofMsQof-7DRzc/edit#slide=id.p)
 
 <a name="start"></a>
 ## Getting Started
@@ -69,6 +65,10 @@ python3 main.py
 ## Author(s)
 
 Padyn Riddell - <i>Initial work</i> - Make School Student and BEW concentration
+
+<a name="additional"></a>
+## Author(s)
+- [pitch slides](https://docs.google.com/presentation/d/1Bxhrws7NxU9sP9RUvLqXMUeOaH_OCLofMsQof-7DRzc/edit#slide=id.p)
 
 <a name="credit"></a>
 ## Acknowledgment
