@@ -3,7 +3,6 @@
 
 ![Image of game](info.png)
 
-* [ Description. ](#description)
 * [ Getting Started. ](#start)
     * [ Prerequisites. ](#pre)
     * [ Installing. ](#install)
