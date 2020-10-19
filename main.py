@@ -113,7 +113,7 @@ def draw_text(text, color, font_size, x, y):
     img = font.render(text, True, color)
     screen.blit(img, (x, y))
 
-# TODO: Pause Function
+# Pause Function
 def paused():
     paused = True
     while paused:
@@ -132,6 +132,27 @@ def paused():
         screen.fill(WHITE)
         draw_text(text='Paused', color=BLACK, font_size=100, x=250, y=100)
         draw_text(text='Press C to continue or Q to quit', color=BLACK, font_size=25, x=250, y=250)
+        pygame.display.update()
+
+# TODO: Controls info page
+def controls():
+    controls = True
+    while controls:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            
+            keys = pygame.key.get_pressed()
+            if event.type == pygame.KEYDOWN:
+                if keys[pygame.K_c]:
+                    controls = False
+
+        screen.fill(WHITE)
+        draw_text(text='Controls', color=BLACK, font_size=100, x=250, y=75)
+        draw_text(text='Press P to pause', color=BLACK, font_size=25, x=250, y=175)
+        draw_text(text='Hold down the arrow keys to move', color=BLACK, font_size=25, x=250, y=275)
+        draw_text(text='Press spacebar to shoot enemies', color=BLACK, font_size=25, x=250, y=375)
+        draw_text(text='Press c to continue the game', color=BLACK, font_size=25, x=250, y=475)
         pygame.display.update()
         
 ################################################################################
@@ -168,6 +189,9 @@ while running:
 
     if keys[pygame.K_p]:
         paused()
+    
+    if keys[pygame.K_i]:
+        controls()
 
     # Enemy Movement
     for i in range(enemy_num):
