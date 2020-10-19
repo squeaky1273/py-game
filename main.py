@@ -159,7 +159,7 @@ def controls_info():
             keys = pygame.key.get_pressed()
             if event.type == pygame.KEYDOWN:
                 if keys[pygame.K_c]:
-                    controls = False
+                    controls_info = False
                 if keys[pygame.K_q]:
                     pygame.quit()
                     quit()
