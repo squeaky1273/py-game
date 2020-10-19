@@ -134,7 +134,7 @@ def paused():
         draw_text(text='Press C to continue or Q to quit', color=BLACK, font_size=25, x=250, y=250)
         pygame.display.update()
 
-# TODO: Controls info page
+# Controls info page
 def controls():
     controls = True
     while controls:
@@ -240,6 +240,9 @@ while running:
 
     # Draw the points
     draw_text(text=f'Points: {points}', color=BLACK, font_size=24, x=20, y=20)
+
+    # Info
+    draw_text(text='Press I for control info', color=BLACK, font_size=24, x=600, y=20)
 
     # Run player function
     player(player_x, player_y)
