@@ -78,7 +78,8 @@ def enemy(x, y, i):
     screen.blit(enemy_img[i], (x, y))
 
 def game_over_text():
-    screen.blit(game_over_img, (200, 250))
+    screen.blit(game_over_img, (250, 175))
+    draw_text(text='Press q to quit', color=BLACK, font_size=25, x=350, y=275)
 
 # Player Throw Snowball
 def player_throw_snowball(x, y):
@@ -201,6 +202,9 @@ while running:
             for j in range(enemy_num):
                 enemy_y[j] = 2000
             game_over_text()
+            if keys[pygame.K_q]:
+                pygame.quit()
+                quit()
             break
 
         enemy_x[i] += enemy_x_change[i]
