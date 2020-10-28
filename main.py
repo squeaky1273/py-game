@@ -16,6 +16,7 @@ screen = pygame.display.set_mode((800, 600))
 
 # Background
 background = pygame.image.load('background.png')
+cover = pygame.image.load('cover.png')
 
 # Color constants
 BLACK = (0, 0, 0)
@@ -71,7 +72,7 @@ def player(x, y):
 def enemy(x, y, i):
     screen.blit(enemy_img[i], (x, y))
 
-# TODO: Game Intro Screen
+# Game Intro Screen
 def game_intro():
     intro = True
     while intro:
@@ -79,23 +80,41 @@ def game_intro():
 
             keys = pygame.key.get_pressed()
             if event.type == pygame.KEYDOWN:
-                if keys[pygame.K_c]:
+                if keys[pygame.K_m]:
                     intro = False
                 if keys[pygame.K_q]:
                     pygame.quit()
                     quit()
         
         screen.fill(WHITE)
-        draw_text(text='Snowball Bash', color=BLACK, font_size=100, x=150, y=100)
-        draw_text(text='The objective is to throw snowballs at the bullies.', color=BLACK, font_size=25, x=200, y=250)
-        draw_text(text='The bullies will be trying to approach you. If they do, GAME OVER!', color=BLACK, font_size=25, x=125, y=300)
-        draw_text(text='Get points by hitting them and keep them away.', color=BLACK, font_size=25, x=200, y=350)
-        draw_text(text='Press C to play and Q to quit.', color=BLACK, font_size=25, x=275, y=450)
+        screen.blit(cover, (50, 45))
         pygame.display.update()
+
+# Before you start the game
+def pregame():
+    pre = True
+    while pre:
+        for event in pygame.event.get():
+
+            keys = pygame.key.get_pressed()
+            if event.type == pygame.KEYDOWN:
+                if keys[pygame.K_c]:
+                    pre = False
+                if keys[pygame.K_q]:
+                    pygame.quit()
+                    quit()
+            
+            screen.fill(WHITE)
+            draw_text(text='Good To Know', color=BLACK, font_size=50, x=275, y=175)
+            draw_text(text='The objective is to throw snowballs at the bullies.', color=BLACK, font_size=25, x=200, y=250)
+            draw_text(text='The bullies will be trying to approach you. If they do, GAME OVER!', color=BLACK, font_size=25, x=125, y=300)
+            draw_text(text='Get points by hitting them and keep them away.', color=BLACK, font_size=25, x=200, y=350)
+            draw_text(text='Press C to play and Q to quit.', color=BLACK, font_size=25, x=275, y=450)
+            pygame.display.update()
 
 def game_over():
     screen.fill(WHITE)
-    screen.blit(game_over_img, (250, 175))
+    screen.blit(game_over_img, (40, 25))
     draw_text(text='Press q to quit', color=BLACK, font_size=25, x=350, y=275)
 
 # Player Throw Snowball
@@ -139,8 +158,6 @@ def paused():
             
             keys = pygame.key.get_pressed()
             if event.type == pygame.KEYDOWN:
-                if keys[pygame.K_c]:
-                    paused = False
                 if keys[pygame.K_q]:
                     pygame.quit()
                     quit()
@@ -179,6 +196,7 @@ def controls_info():
 
 # Game Loop
 game_intro()
+pregame()
 
 running = True
 while running:
