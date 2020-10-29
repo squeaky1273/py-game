@@ -1,7 +1,7 @@
 # Snowball Bash
 ❄️ A space invader type pygame, but with a twist ❄️ 
 
-![Image of game](info.png)
+![Image of game](cover.png)
 
 * [ Getting Started. ](#start)
     * [ Prerequisites. ](#pre)
