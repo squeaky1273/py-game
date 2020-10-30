@@ -158,6 +158,8 @@ def paused():
             
             keys = pygame.key.get_pressed()
             if event.type == pygame.KEYDOWN:
+                if keys[pygame.K_c]:
+                    paused = False
                 if keys[pygame.K_q]:
                     pygame.quit()
                     quit()
