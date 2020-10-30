@@ -80,7 +80,7 @@ def game_intro():
 
             keys = pygame.key.get_pressed()
             if event.type == pygame.KEYDOWN:
-                if keys[pygame.K_m]:
+                if keys[pygame.K_c]:
                     intro = False
                 if keys[pygame.K_q]:
                     pygame.quit()
@@ -90,27 +90,27 @@ def game_intro():
         screen.blit(cover, (50, 45))
         pygame.display.update()
 
-# Before you start the game
-def pregame():
-    pre = True
-    while pre:
-        for event in pygame.event.get():
+# # Before you start the game
+# def pregame():
+#     pre = True
+#     while pre:
+#         for event in pygame.event.get():
 
-            keys = pygame.key.get_pressed()
-            if event.type == pygame.KEYDOWN:
-                if keys[pygame.K_c]:
-                    pre = False
-                if keys[pygame.K_q]:
-                    pygame.quit()
-                    quit()
+#             keys = pygame.key.get_pressed()
+#             if event.type == pygame.KEYDOWN:
+#                 if keys[pygame.K_c]:
+#                     pre = False
+#                 if keys[pygame.K_q]:
+#                     pygame.quit()
+#                     quit()
             
-            screen.fill(WHITE)
-            draw_text(text='Good To Know', color=BLACK, font_size=50, x=275, y=175)
-            draw_text(text='The objective is to throw snowballs at the bullies.', color=BLACK, font_size=25, x=200, y=250)
-            draw_text(text='The bullies will be trying to approach you. If they do, GAME OVER!', color=BLACK, font_size=25, x=125, y=300)
-            draw_text(text='Get points by hitting them and keep them away.', color=BLACK, font_size=25, x=200, y=350)
-            draw_text(text='Press C to play and Q to quit.', color=BLACK, font_size=25, x=275, y=450)
-            pygame.display.update()
+#             screen.fill(WHITE)
+#             draw_text(text='Good To Know', color=BLACK, font_size=50, x=275, y=175)
+#             draw_text(text='The objective is to throw snowballs at the bullies.', color=BLACK, font_size=25, x=200, y=250)
+#             draw_text(text='The bullies will be trying to approach you. If they do, GAME OVER!', color=BLACK, font_size=25, x=125, y=300)
+#             draw_text(text='Get points by hitting them and keep them away.', color=BLACK, font_size=25, x=200, y=350)
+#             draw_text(text='Press C to play and Q to quit.', color=BLACK, font_size=25, x=275, y=450)
+#             pygame.display.update()
 
 def game_over():
     screen.fill(WHITE)
@@ -198,7 +198,6 @@ def controls_info():
 
 # Game Loop
 game_intro()
-pregame()
 
 running = True
 while running:
