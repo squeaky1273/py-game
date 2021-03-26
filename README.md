@@ -42,11 +42,11 @@ If that doesn't work, run this command
 <a name="clone"></a>
 <h4>Cloning Repo</h4>
 
-    $ git clone https://github.com/squeaky1273/py-game.git
+    $ git clone https://github.com/squeaky1273/snowball-bash.git
     $ cd playlist
     $ rm -rf .git
     $ git init
-    $ git remote add origin https://github.com/YOUR_GITHUB_USERNAME/py-game
+    $ git remote add origin https://github.com/YOUR_GITHUB_USERNAME/snowball-bash
 
 <a name="running"></a>
 <h3>Let the Games Begin</h3>
